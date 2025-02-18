@@ -23,7 +23,7 @@ type editItemOpts struct {
 	fieldID              string
 	projectID            string
 	text                 string
-	number               float32
+	number               float64
 	date                 string
 	singleSelectOptionID string
 	iterationID          string
@@ -63,7 +63,7 @@ func NewCmdEditItem(f *cmdutil.Factory, runF func(config editItemConfig) error) 
 		Short: "Edit an item in a project",
 		Long: heredoc.Docf(`
 			Edit either a draft issue or a project item. Both usages require the ID of the item to edit.
-			
+
 			For non-draft issues, the ID of the project is also required, and only a single field value can be updated per invocation.
 
 			Remove project item field value using %[1]s--clear%[1]s flag.
@@ -123,7 +123,7 @@ func NewCmdEditItem(f *cmdutil.Factory, runF func(config editItemConfig) error) 
 	editItemCmd.Flags().StringVar(&opts.fieldID, "field-id", "", "ID of the field to update")
 	editItemCmd.Flags().StringVar(&opts.projectID, "project-id", "", "ID of the project to which the field belongs to")
 	editItemCmd.Flags().StringVar(&opts.text, "text", "", "Text value for the field")
-	editItemCmd.Flags().Float32Var(&opts.number, "number", 0, "Number value for the field")
+	editItemCmd.Flags().Float64Var(&opts.number, "number", 0, "Number value for the field")
 	editItemCmd.Flags().StringVar(&opts.date, "date", "", "Date value for the field (YYYY-MM-DD)")
 	editItemCmd.Flags().StringVar(&opts.singleSelectOptionID, "single-select-option-id", "", "ID of the single select option value to set on the field")
 	editItemCmd.Flags().StringVar(&opts.iterationID, "iteration-id", "", "ID of the iteration value to set on the field")
